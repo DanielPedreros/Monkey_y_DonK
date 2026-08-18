@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danketic | Digital Solutions</title>
+    <meta
+      name="description"
+      content="Portfolio of web projects, inventory systems, software and digital solutions for businesses."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="brand" aria-label="Danketic">
+          <span class="brand-mark">DK</span>
+          <span class="brand-text">Danketic</span>
+        </div>
+
+        <nav class="nav-links" aria-label="Main menu">
+          <a href="#servicios" data-i18n="nav.services">Services</a>
+          <a href="#portafolio" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="#proceso" data-i18n="nav.process">Process</a>
+          <a href="#contacto" data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="lang-switch" aria-label="Language selector">
+            <button class="lang-btn active" type="button" data-lang="en">EN</button>
+            <button class="lang-btn" type="button" data-lang="es">ES</button>
+          </div>
+          <button class="btn btn-secondary btn-admin" type="button" id="openAdmin">Admin</button>
+          <a class="btn btn-primary" href="#contacto" data-i18n="nav.cta">Request a quote</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow" data-i18n="hero.eyebrow">Custom development</p>
+            <h1 data-i18n="hero.title">Digital solutions that power your business with clarity and scale.</h1>
+            <p class="lead" data-i18n="hero.lead">
+              Danketic creates custom websites, inventory systems and software for brands and businesses that want to operate with more efficiency, better experience and real growth.
+            </p>
+            <div class="cta-group">
+              <a class="btn btn-primary" href="#portafolio" data-i18n="hero.primaryCta">View projects</a>
+              <a class="btn btn-secondary" href="#contacto" data-i18n="hero.secondaryCta">Let’s talk</a>
+            </div>
+            <div class="trust-row" aria-label="Trust indicators">
+              <span>• Startups</span>
+              <span>• Businesses</span>
+              <span>• Internal teams</span>
+            </div>
+            <ul class="hero-stats" aria-label="Statistics">
+              <li><strong>+30</strong><span data-i18n="hero.statProjects">projects</span></li>
+              <li><strong>100%</strong><span data-i18n="hero.statCustom">custom</span></li>
+              <li><strong>24/7</strong><span data-i18n="hero.statSupport">support</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-label="Preview of digital solutions">
+            <div class="dashboard-card">
+              <div class="card-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="panel">
+                <div class="mini-chart">
+                  <span style="height: 35%"></span>
+                  <span style="height: 52%"></span>
+                  <span style="height: 65%"></span>
+                  <span style="height: 82%"></span>
+                  <span style="height: 100%"></span>
+                </div>
+                <div class="metrics">
+                  <div>
+                    <label data-i18n="hero.metricSales">Sales</label>
+                    <strong>+42%</strong>
+                  </div>
+                  <div>
+                    <label data-i18n="hero.metricTime">Time</label>
+                    <strong>3x more</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicios" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow" data-i18n="services.eyebrow">Services</p>
+            <h2 data-i18n="services.title">Digital solutions for every stage of your business</h2>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="icon">🌐</div>
+              <h3 data-i18n="service.web.title">Websites</h3>
+              <p data-i18n="service.web.text">
+                Modern and fast sites with attractive design to attract clients and strengthen your online presence.
+              </p>
+              <ul>
+                <li data-i18n="service.web.li1">Landing pages</li>
+                <li data-i18n="service.web.li2">Digital catalogs</li>
+                <li data-i18n="service.web.li3">E-commerce</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="icon">📦</div>
+              <h3 data-i18n="service.inventory.title">Inventory</h3>
+              <p data-i18n="service.inventory.text">
+                Systems to control entries, exits, products and reports in real time to optimize your operation.
+              </p>
+              <ul>
+                <li data-i18n="service.inventory.li1">Stock control</li>
+                <li data-i18n="service.inventory.li2">Reports and alerts</li>
+                <li data-i18n="service.inventory.li3">Supplier management</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="icon">💻</div>
+              <h3 data-i18n="service.software.title">Software</h3>
+              <p data-i18n="service.software.text">
+                Custom tools to automate processes, improve productivity and reduce operational errors.
+              </p>
+              <ul>
+                <li data-i18n="service.software.li1">Dashboards</li>
+                <li data-i18n="service.software.li2">CRM</li>
+                <li data-i18n="service.software.li3">Automation</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="portafolio" class="section alt-bg">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow" data-i18n="portfolio.eyebrow">Portfolio</p>
+            <h2 data-i18n="portfolio.title">Dashboards and solutions already working</h2>
+          </div>
+
+          <div class="carousel-wrap">
+            <div class="dashboard-carousel" id="dashboardRail" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="detalle-proyecto" class="section project-detail-section">
+        <div class="container">
+          <div class="detail-card" id="projectDetailCard">
+            <div class="detail-image-wrap">
+              <img src="" alt="Project sample" id="detailImage" />
+            </div>
+            <div class="detail-content">
+              <p class="eyebrow" id="detailCategory">Dashboard</p>
+              <h3 id="detailTitle">Select a dashboard</h3>
+              <p id="detailDescription">
+                Choose a project to see its concept and the option that best matches your needs.
+              </p>
+
+              <div class="choice-group" aria-label="Project options">
+                <button class="choice-btn active" data-choice="igual" type="button" data-i18n="project.optionEqual">
+                  I want a page like this
+                </button>
+                <button class="choice-btn" data-choice="cambiar" type="button" data-i18n="project.optionAdjust">
+                  I want to change things
+                </button>
+              </div>
+
+              <div class="selection-box">
+                <strong data-i18n="project.selectionLabel">Selection:</strong>
+                <span id="selectionText">I want a page like this</span>
+              </div>
+
+              <a class="btn btn-primary" id="detailCta" href="#contacto" type="button" data-i18n="project.cta">
+                Request this project
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="proceso" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow" data-i18n="process.eyebrow">Process</p>
+            <h2 data-i18n="process.title">Clear, professional work focused on results</h2>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step">
+              <span>01</span>
+              <h3 data-i18n="process.step1.title">Diagnosis</h3>
+              <p data-i18n="process.step1.text">We analyze your business, goals and the processes you want to improve.</p>
+            </div>
+            <div class="step">
+              <span>02</span>
+              <h3 data-i18n="process.step2.title">Design</h3>
+              <p data-i18n="process.step2.text">We define a visual and functional strategy aligned with your brand and audience.</p>
+            </div>
+            <div class="step">
+              <span>03</span>
+              <h3 data-i18n="process.step3.title">Development</h3>
+              <p data-i18n="process.step3.text">We build the solution using modern and maintainable technologies.</p>
+            </div>
+            <div class="step">
+              <span>04</span>
+              <h3 data-i18n="process.step4.title">Delivery</h3>
+              <p data-i18n="process.step4.text">We deliver the solution, train your team and support continuous improvement.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonial-section">
+        <div class="container">
+          <div class="testimonial-box">
+            <p data-i18n="testimonial.text">
+              “We launched a modern and functional website that helped us capture more clients and better organize business information.”
+            </p>
+            <strong data-i18n="testimonial.author">— Services company</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contacto" class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-copy">
+          <div class="brand" aria-label="Danketic">
+            <span class="brand-mark">DK</span>
+            <span class="brand-text">Danketic</span>
+          </div>
+          <p data-i18n="footer.text">
+            We develop digital solutions for companies and businesses that want to grow with intelligent technology.
+          </p>
+        </div>
+
+        <form id="contactForm" class="contact-form">
+          <h3 data-i18n="contact.title">Request your project</h3>
+          <div class="field-row">
+            <input type="text" name="nombre" placeholder="Your name" data-i18n-placeholder="contact.name" required />
+            <input type="email" name="email" placeholder="Email address" data-i18n-placeholder="contact.email" required />
+          </div>
+          <select name="tipo" required>
+            <option value="" data-i18n="contact.projectType">Project type</option>
+            <option value="ecommerce-dashboard" data-i18n="contact.optionEcommerceDash">E-commerce Dashboard</option>
+            <option value="inventory-system" data-i18n="contact.optionInventorySystem">Inventory Management System</option>
+            <option value="financial-dashboard" data-i18n="contact.optionFinancialDash">Financial Dashboard</option>
+            <option value="analytics-platform" data-i18n="contact.optionAnalytics">Analytics Platform</option>
+            <option value="crm-system" data-i18n="contact.optionCRM">CRM System</option>
+            <option value="custom-web-app" data-i18n="contact.optionWebApp">Custom Web Application</option>
+            <option value="mobile-app" data-i18n="contact.optionMobile">Mobile Application</option>
+            <option value="other" data-i18n="contact.optionOther">Other</option>
+          </select>
+          <textarea
+            name="mensaje"
+            rows="5"
+            placeholder="Tell us what you need..."
+            data-i18n-placeholder="contact.message"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn-primary full-width" data-i18n="contact.submit">Send request</button>
+          <p id="form-message" class="form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </footer>
+
+    <div id="adminModal" class="admin-modal hidden" aria-hidden="true">
+      <div class="admin-panel">
+        <div class="admin-header">
+          <h3 data-i18n="admin.title">Admin panel</h3>
+          <button type="button" class="close-admin" id="closeAdmin" aria-label="Close panel">×</button>
+        </div>
+
+        <form id="adminLoginForm" class="admin-login-form">
+          <label class="admin-field">
+            <span data-i18n="admin.username">Username</span>
+            <input type="text" id="adminUsername" placeholder="Type your username" data-i18n-placeholder="admin.usernamePlaceholder" required />
+          </label>
+
+          <label class="admin-field">
+            <span data-i18n="admin.password">Password</span>
+            <input type="password" id="adminPassword" placeholder="Type your password" data-i18n-placeholder="admin.passwordPlaceholder" required />
+          </label>
+
+          <div class="admin-actions">
+            <button type="submit" class="btn btn-primary" data-i18n="admin.login">Enter</button>
+          </div>
+          <p id="adminMessage" class="admin-message" aria-live="polite"></p>
+        </form>
+
+        <form id="adminForm" class="admin-form hidden">
+          <label class="admin-field">
+            <span data-i18n="admin.projectName">Project name</span>
+            <input type="text" id="projectTitle" required placeholder="Example: Shopify Dashboard" data-i18n-placeholder="admin.projectNamePlaceholder" />
+          </label>
+
+          <label class="admin-field">
+            <span data-i18n="admin.category">Category</span>
+            <input type="text" id="projectCategory" required placeholder="Example: Ecommerce / Inventory" data-i18n-placeholder="admin.categoryPlaceholder" />
+          </label>
+
+          <label class="admin-field">
+            <span data-i18n="admin.description">Description</span>
+            <textarea id="projectDescription" rows="4" required placeholder="Describe the project..." data-i18n-placeholder="admin.descriptionPlaceholder"></textarea>
+          </label>
+
+          <label class="admin-field">
+            <span data-i18n="admin.file">JPG / PNG file</span>
+            <input type="file" id="projectImage" accept="image/jpeg,image/jpg,image/png,image/webp" required />
+          </label>
+
+          <div class="admin-actions">
+            <button type="submit" class="btn btn-primary" data-i18n="admin.saveProject">Save project</button>
+            <button type="button" class="btn btn-secondary" id="resetProjects" data-i18n="admin.reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/5210000000000?text=Hello%20Danketic%2C%20I%20would%20like%20to%20talk%20about%20a%20project."
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat on WhatsApp"
+    >
+      <span class="whatsapp-label">WhatsApp</span>
+    </a>
+
+    <script src="script.js"></script>
+  </body>
+</html>
