@@ -1,0 +1,21 @@
+{
+  "name": "danketic-server",
+  "version": "1.0.0",
+  "description": "Backend minimo para el formulario de contacto y el login de admin de Danketic",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "hash-password": "node hash-password.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "resend": "^3.5.0"
+  }
+}
