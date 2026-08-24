@@ -292,7 +292,7 @@ git push origin main
 
 ## 🔗 Enlaces Rápidos
 
-- **WhatsApp**: [Contacto Directo](https://wa.me/5210000000000)
+- **WhatsApp**: [Contacto Directo](https://wa.me/573028051687)
 - **Admin**: http://localhost:8000 (usuario: admin, contraseña: admin123)
 
 ---
