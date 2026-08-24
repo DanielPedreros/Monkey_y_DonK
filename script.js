@@ -1,6 +1,14 @@
 const STORAGE_KEY = 'danketic-projects';
-const ADMIN_USERNAME = 'danketic';
-const ADMIN_PASSWORD = 'danketic2026';
+
+// Detecta automáticamente si el sitio corre en local o ya está publicado.
+// En local usa el backend en el puerto 3001.
+// En producción, reemplaza la URL de abajo por la de tu backend ya desplegado
+// (Render, Railway, tu VPS, etc.) una vez lo tengas.
+const IS_LOCAL = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const PRODUCTION_API_URL = 'https://TU-BACKEND-EN-PRODUCCION.com'; // <-- cámbialo cuando despliegues el backend
+const API_BASE = IS_LOCAL ? 'http://localhost:3001' : PRODUCTION_API_URL;
+
+let adminToken = sessionStorage.getItem('danketic-admin-token') || null;
 
 const translations = {
   en: {
@@ -48,7 +56,7 @@ const translations = {
     'process.step3.text': 'We build the solution using modern and maintainable technologies.',
     'process.step4.title': 'Delivery',
     'process.step4.text': 'We deliver the solution, train your team and support continuous improvement.',
-    'testimonial.text': '“We launched a modern and functional website that helped us capture more clients and better organize business information.”',
+    'testimonial.text': '"We launched a modern and functional website that helped us capture more clients and better organize business information."',
     'testimonial.author': '— Services company',
     'footer.text': 'We develop digital solutions for companies and businesses that want to grow with intelligent technology.',
     'contact.title': 'Request your project',
@@ -130,7 +138,7 @@ const translations = {
     'process.step3.text': 'Construimos la solución con tecnologías modernas y mantenibles.',
     'process.step4.title': 'Entrega',
     'process.step4.text': 'Entregamos la solución, capacitamos a tu equipo y apoyamos la mejora continua.',
-    'testimonial.text': '“Logramos una web moderna y funcional que nos ayudó a captar más clientes y organizar mejor la información de nuestro negocio.”',
+    'testimonial.text': '"Logramos una web moderna y funcional que nos ayudó a captar más clientes y organizar mejor la información de nuestro negocio."',
     'testimonial.author': '— Empresa de servicios',
     'footer.text': 'Desarrollamos soluciones digitales para empresas y negocios que quieren crecer con tecnología inteligente.',
     'contact.title': 'Solicita tu proyecto',
@@ -227,17 +235,45 @@ const projectCategoryInput = document.getElementById('projectCategory');
 const projectDescriptionInput = document.getElementById('projectDescription');
 const projectImageInput = document.getElementById('projectImage');
 
-let projectList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultProjects;
+function loadProjects() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return defaultProjects;
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed) && parsed.length ? parsed : defaultProjects;
+  } catch (error) {
+    console.warn('No se pudo leer danketic-projects de localStorage, usando proyectos por defecto.', error);
+    return defaultProjects;
+  }
+}
+
+let projectList = loadProjects();
 let activeProject = projectList[0];
 let selectedChoice = 'igual';
 let carouselIndex = 0;
 let currentLang = 'en';
 
+function escapeHTML(value) {
+  const div = document.createElement('div');
+  div.textContent = value ?? '';
+  return div.innerHTML;
+}
+
 function saveProjects(data) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch (error) {
+    console.error('Error guardando proyectos en localStorage', error);
+    if (adminMessage) {
+      adminMessage.textContent = 'The image is too heavy to save. Try a smaller/compressed file.';
+      adminMessage.style.color = '#fca5a5';
+    }
+    return false;
+  }
   projectList = data;
   renderProjects();
   updateDetail(projectList[0]);
+  return true;
 }
 
 function getChoiceLabel(code) {
@@ -289,7 +325,21 @@ function updateDetail(project) {
   detailCategory.textContent = project.category;
   detailDescription.textContent = project.description;
   selectionText.textContent = getChoiceLabel(selectedChoice);
-  detailCta.href = `#contacto?project=${encodeURIComponent(project.title)}&option=${selectedChoice}`;
+  detailCta.href = '#contacto';
+}
+
+// Al hacer clic en "Solicitar este proyecto", precargamos el mensaje
+// del formulario de contacto con el proyecto y la opción elegida.
+if (detailCta) {
+  detailCta.addEventListener('click', () => {
+    if (!activeProject) return;
+
+    const messageField = document.querySelector('textarea[name="mensaje"]');
+    if (messageField) {
+      const choiceLabel = getChoiceLabel(selectedChoice);
+      messageField.value = `${activeProject.title} — ${choiceLabel}. `;
+    }
+  });
 }
 
 function renderProjects() {
@@ -303,12 +353,12 @@ function renderProjects() {
           class="dashboard-item"
           type="button"
           data-index="${index % projectList.length}"
-          aria-label="View project ${project.title}"
+          aria-label="View project ${escapeHTML(project.title)}"
         >
-          <img src="${project.image}" alt="${project.title}" />
+          <img src="${escapeHTML(project.image)}" alt="${escapeHTML(project.title)}" />
           <span class="dashboard-item-overlay">
-            <strong>${project.title}</strong>
-            <small>${project.category}</small>
+            <strong>${escapeHTML(project.title)}</strong>
+            <small>${escapeHTML(project.category)}</small>
           </span>
         </button>
       `
@@ -325,40 +375,90 @@ function renderProjects() {
     });
   });
 
-  const firstItem = dashboardRail.querySelector('.dashboard-item');
-
-  if (firstItem) {
-    const moveWidth = firstItem.getBoundingClientRect().width + 18;
-    dashboardRail.style.transform = 'translateX(0px)';
-    carouselIndex = 0;
-    window.clearInterval(window.danketicCarouselTimer);
-    window.danketicCarouselTimer = window.setInterval(() => {
-      carouselIndex += 1;
-      dashboardRail.style.transition = 'transform 0.7s ease';
-      dashboardRail.style.transform = `translateX(-${moveWidth * carouselIndex}px)`;
-
-      if (carouselIndex >= projectList.length) {
-        window.setTimeout(() => {
-          carouselIndex = 0;
-          dashboardRail.style.transition = 'none';
-          dashboardRail.style.transform = 'translateX(0px)';
-        }, 700);
-      }
-    }, 3000);
-  }
+  startCarousel();
 }
 
+function getMoveWidth() {
+  const firstItem = dashboardRail.querySelector('.dashboard-item');
+  if (!firstItem) return 0;
+  const styles = window.getComputedStyle(dashboardRail);
+  const gap = parseFloat(styles.columnGap || styles.gap) || 18;
+  return firstItem.getBoundingClientRect().width + gap;
+}
+
+function startCarousel() {
+  if (!dashboardRail || !dashboardRail.querySelector('.dashboard-item')) return;
+
+  dashboardRail.style.transition = 'none';
+  dashboardRail.style.transform = 'translateX(0px)';
+  carouselIndex = 0;
+  window.clearInterval(window.danketicCarouselTimer);
+
+  window.danketicCarouselTimer = window.setInterval(() => {
+    carouselIndex += 1;
+    const moveWidth = getMoveWidth(); // se recalcula en cada tick por si cambió el tamaño de pantalla
+    dashboardRail.style.transition = 'transform 0.7s ease';
+    dashboardRail.style.transform = `translateX(-${moveWidth * carouselIndex}px)`;
+
+    if (carouselIndex >= projectList.length) {
+      window.setTimeout(() => {
+        carouselIndex = 0;
+        dashboardRail.style.transition = 'none';
+        dashboardRail.style.transform = 'translateX(0px)';
+      }, 700);
+    }
+  }, 3000);
+}
+
+// Si el usuario cambia el tamaño de la ventana o gira el celular,
+// reiniciamos la posición del carrusel para que no quede desalineado.
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = window.setTimeout(() => {
+    startCarousel();
+  }, 200);
+});
+
 if (form) {
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
     const nombre = formData.get('nombre')?.toString().trim() || 'Client';
+    const email = formData.get('email')?.toString().trim() || '';
     const tipo = formData.get('tipo')?.toString() || 'project';
+    const mensaje = formData.get('mensaje')?.toString().trim() || '';
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    message.textContent = `Thanks ${nombre}, your request for ${tipo} was sent. We will contact you soon.`;
-    message.style.color = '#7ee7c8';
-    form.reset();
+    message.textContent = 'Sending...';
+    message.style.color = '';
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      const response = await fetch(`${API_BASE}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, tipo, mensaje }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong sending your message.');
+      }
+
+      message.textContent = `Thanks ${nombre}, your request for ${tipo} was sent. We will contact you soon.`;
+      message.style.color = '#7ee7c8';
+      form.reset();
+    } catch (error) {
+      message.textContent =
+        error.message === 'Failed to fetch'
+          ? 'Could not reach the server. Please try again later or write us on WhatsApp.'
+          : error.message;
+      message.style.color = '#fca5a5';
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
   });
 }
 
@@ -380,6 +480,8 @@ function closeAdmin() {
   adminLoginForm.reset();
   adminForm.reset();
   adminMessage.textContent = '';
+  adminToken = null;
+  sessionStorage.removeItem('danketic-admin-token');
 }
 
 if (openAdminButton) {
@@ -399,21 +501,45 @@ if (adminModal) {
 }
 
 if (adminLoginForm) {
-  adminLoginForm.addEventListener('submit', (event) => {
+  adminLoginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const username = adminUsernameInput.value.trim();
     const password = adminPasswordInput.value.trim();
+    const submitButton = adminLoginForm.querySelector('button[type="submit"]');
 
-    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    adminMessage.textContent = 'Verificando...';
+    adminMessage.style.color = '';
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      const response = await fetch(`${API_BASE}/api/admin/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Invalid username or password.');
+      }
+
+      adminToken = data.token;
+      sessionStorage.setItem('danketic-admin-token', adminToken);
+
       adminMessage.textContent = '';
       adminLoginForm.classList.add('hidden');
       adminForm.classList.remove('hidden');
       projectTitleInput.focus();
-    } else {
-      adminMessage.textContent = 'Invalid username or password.';
+    } catch (error) {
+      adminMessage.textContent =
+        error.message === 'Failed to fetch'
+          ? 'No se pudo conectar con el servidor. ¿Está corriendo el backend?'
+          : error.message;
       adminMessage.style.color = '#fca5a5';
       adminUsernameInput.focus();
+    } finally {
+      if (submitButton) submitButton.disabled = false;
     }
   });
 }
@@ -443,9 +569,11 @@ if (adminForm) {
       };
 
       const updatedProjects = [newProject, ...projectList];
-      saveProjects(updatedProjects);
-      adminForm.reset();
-      closeAdmin();
+      const saved = saveProjects(updatedProjects);
+      if (saved) {
+        adminForm.reset();
+        closeAdmin();
+      }
     };
 
     reader.readAsDataURL(file);
@@ -467,7 +595,7 @@ document.querySelectorAll('.choice-btn').forEach((button) => {
     selectedChoice = button.dataset.choice;
     selectionText.textContent = getChoiceLabel(selectedChoice);
     if (activeProject) {
-      detailCta.href = `#contacto?project=${encodeURIComponent(activeProject.title)}&option=${selectedChoice}`;
+      detailCta.href = '#contacto';
     }
   });
 });
