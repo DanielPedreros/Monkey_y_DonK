@@ -957,3 +957,14 @@ button {
     padding: 30px 22px;
   }
 }
+
+.btn-whatsapp {
+  color: white;
+  background: #25D366;
+  box-shadow: 0 8px 18px rgba(37, 211, 102, 0.28);
+}
+
+.btn-lg {
+  padding: 1.1rem 1.8rem;
+  font-size: 1.05rem;
+}
