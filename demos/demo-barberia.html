@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Barbería El Corte — Demo</title>
+<style>
+  :root {
+    --bg: #14110f;
+    --panel: #1f1a16;
+    --gold: #d4a24c;
+    --text: #f5efe6;
+    --muted: #b8a894;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .demo-banner {
+    background: var(--gold);
+    color: #14110f;
+    text-align: center;
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  header {
+    text-align: center;
+    padding: 70px 20px 50px;
+    background: linear-gradient(180deg, #1f1a16, #14110f);
+    border-bottom: 2px solid var(--gold);
+  }
+  header .icon { font-size: 3rem; margin-bottom: 10px; }
+  header h1 { font-size: 2.4rem; color: var(--gold); letter-spacing: 2px; }
+  header p { color: var(--muted); margin-top: 10px; font-size: 1.05rem; }
+  .cta {
+    display: inline-block;
+    margin-top: 24px;
+    background: var(--gold);
+    color: #14110f;
+    padding: 14px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  section { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+  h2 { color: var(--gold); font-size: 1.6rem; margin-bottom: 30px; text-align: center; letter-spacing: 1px; }
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .service-card {
+    background: var(--panel);
+    border: 1px solid #332a22;
+    border-radius: 8px;
+    padding: 28px 22px;
+    text-align: center;
+  }
+  .service-card .emoji { font-size: 2rem; margin-bottom: 12px; }
+  .service-card h3 { color: var(--text); margin-bottom: 8px; }
+  .service-card .price { color: var(--gold); font-weight: 700; margin-top: 10px; font-family: sans-serif; }
+  .hours { background: var(--panel); border-radius: 8px; padding: 30px; text-align: center; }
+  .hours p { margin: 6px 0; color: var(--muted); }
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 2px solid var(--gold);
+    color: var(--muted);
+    font-family: sans-serif;
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--gold); }
+</style>
+</head>
+<body>
+  <div class="demo-banner">🎨 Esta es una página de ejemplo (demo) creada por Danketic — no es un negocio real</div>
+
+  <header>
+    <div class="icon">💈</div>
+    <h1>EL CORTE</h1>
+    <p>Barbería clásica · Cortes con estilo</p>
+    <a class="cta" href="https://wa.me/573028051687?text=Hola%2C%20vi%20la%20demo%20de%20barber%C3%ADa%20y%20quiero%20una%20p%C3%A1gina%20as%C3%AD" target="_blank" rel="noreferrer">Agendar por WhatsApp</a>
+  </header>
+
+  <section>
+    <h2>Nuestros servicios</h2>
+    <div class="services">
+      <div class="service-card">
+        <div class="emoji">✂️</div>
+        <h3>Corte clásico</h3>
+        <p>Corte a tijera y máquina, incluye lavado.</p>
+        <div class="price">$25.000</div>
+      </div>
+      <div class="service-card">
+        <div class="emoji">🪒</div>
+        <h3>Arreglo de barba</h3>
+        <p>Perfilado, afeitado y toalla caliente.</p>
+        <div class="price">$18.000</div>
+      </div>
+      <div class="service-card">
+        <div class="emoji">✨</div>
+        <h3>Combo completo</h3>
+        <p>Corte + barba + tratamiento facial.</p>
+        <div class="price">$38.000</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Horarios</h2>
+    <div class="hours">
+      <p>Lunes a Viernes: 9:00 AM – 7:00 PM</p>
+      <p>Sábados: 9:00 AM – 5:00 PM</p>
+      <p>Domingos: Cerrado</p>
+    </div>
+  </section>
+
+  <footer>
+    Demo creada por <a href="../index.html">Danketic</a> — así de rápido puede verse tu negocio online.
+  </footer>
+</body>
+</html>

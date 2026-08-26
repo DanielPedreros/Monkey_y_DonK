@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sabor Local — Demo</title>
+<style>
+  :root {
+    --bg: #fdf6ec;
+    --panel: #ffffff;
+    --primary: #c1440e;
+    --dark: #2e2018;
+    --muted: #7a6a5a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    line-height: 1.6;
+  }
+  .demo-banner {
+    background: var(--dark);
+    color: #fdf6ec;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  header {
+    text-align: center;
+    padding: 70px 20px 50px;
+    background: linear-gradient(135deg, #c1440e, #e07a3f);
+    color: white;
+  }
+  header .icon { font-size: 3rem; margin-bottom: 10px; }
+  header h1 { font-size: 2.4rem; letter-spacing: 1px; }
+  header p { margin-top: 10px; font-size: 1.1rem; opacity: 0.95; }
+  .cta {
+    display: inline-block;
+    margin-top: 24px;
+    background: white;
+    color: var(--primary);
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  section { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+  h2 { color: var(--primary); font-size: 1.7rem; margin-bottom: 30px; text-align: center; }
+  .menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .dish {
+    background: var(--panel);
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  }
+  .dish .emoji { font-size: 2rem; }
+  .dish h3 { margin: 10px 0 6px; }
+  .dish p { color: var(--muted); font-size: 0.95rem; }
+  .dish .price { color: var(--primary); font-weight: 700; margin-top: 10px; }
+  .hours { background: var(--panel); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+  .hours p { margin: 6px 0; color: var(--muted); }
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--dark);
+    color: #fdf6ec;
+    font-size: 0.85rem;
+  }
+  footer a { color: #e07a3f; }
+</style>
+</head>
+<body>
+  <div class="demo-banner">🎨 Esta es una página de ejemplo (demo) creada por Danketic — no es un negocio real</div>
+
+  <header>
+    <div class="icon">🍽️</div>
+    <h1>Sabor Local</h1>
+    <p>Comida casera con ingredientes frescos</p>
+    <a class="cta" href="https://wa.me/573028051687?text=Hola%2C%20vi%20la%20demo%20de%20restaurante%20y%20quiero%20una%20p%C3%A1gina%20as%C3%AD" target="_blank" rel="noreferrer">Reservar por WhatsApp</a>
+  </header>
+
+  <section>
+    <h2>Platos destacados</h2>
+    <div class="menu">
+      <div class="dish">
+        <div class="emoji">🍛</div>
+        <h3>Bandeja paisa</h3>
+        <p>El clásico completo, para compartir o disfrutar solo.</p>
+        <div class="price">$28.000</div>
+      </div>
+      <div class="dish">
+        <div class="emoji">🐟</div>
+        <h3>Pescado frito</h3>
+        <p>Con patacón, arroz de coco y ensalada.</p>
+        <div class="price">$32.000</div>
+      </div>
+      <div class="dish">
+        <div class="emoji">🥗</div>
+        <h3>Ensalada de la casa</h3>
+        <p>Fresca, ligera y perfecta para acompañar.</p>
+        <div class="price">$16.000</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Horarios</h2>
+    <div class="hours">
+      <p>Martes a Domingo: 11:00 AM – 9:00 PM</p>
+      <p>Lunes: Cerrado</p>
+    </div>
+  </section>
+
+  <footer>
+    Demo creada por <a href="../index.html">Danketic</a> — así de rápido puede verse tu negocio online.
+  </footer>
+</body>
+</html>
